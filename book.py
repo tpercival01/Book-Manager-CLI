@@ -1,3 +1,5 @@
+import requests
+
 class Book:
     def __init__(self, title, author):
         self.title = title
@@ -47,9 +49,13 @@ class Bookcase:
         self.books[id] = book
 
 def search_book(title, author):
-    url = "https://openlibrary.org/search.json?"
+    url = "https://www.googleapis.com/books/v1/volumes?q="
     title = title.replace(" ", "+").lower()
     author = author.replace(" ", "+").lower()
-    print(title)
-    print(author)
-    query = f"q={title}&author={author}"
+    query = f'"{title}"+"{author}"'
+    res = requests.get(url+query)
+    
+    return clean_book_search(res.text)
+
+def clean_book_search(book):
+    pass

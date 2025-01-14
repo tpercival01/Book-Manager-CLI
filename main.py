@@ -4,7 +4,8 @@ from database import load_file, save_file, create_save_data
 
 def main():
     title_card()
-
+    
+    print("\nChecking for save file...")
     bookcase = load_file()
 
     if len(bookcase) > 0:

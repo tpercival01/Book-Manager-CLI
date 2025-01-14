@@ -3,12 +3,13 @@ import os
 
 def load_file():
     if not os.path.isfile("save_file.json"):
-        print("File does not exist")
+        print("\nNo save file found, continuing as new user.\n")
         return {}
     
     try: 
         with open("save_file.json", "r") as infile:
             json_object = json.load(infile)
+            print("\nFile loaded successfully.\n")
         return json_object
     except json.JSONDecodeError:
         print("Error: Could not decode json.")
@@ -27,8 +28,11 @@ def save_file(json_object):
 
 def create_save_data(bookcase):
     json_data = []
-    for id in bookcase.books:
-        temp = bookcase.books[id].get_book()
-        json_data.append(temp)
+    try:
+        for id in bookcase.books:
+            temp = bookcase.books[id].get_book()
+            json_data.append(temp)
+    except:
+        return json.dumps(json_data, indent=4)
     
     return json.dumps(json_data, indent=4)
