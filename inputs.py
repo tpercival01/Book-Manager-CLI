@@ -1,4 +1,4 @@
-from book import search_book
+from book import search_book, update_a_book
 from graphics import display_messages
 
 RED = "\033[91m"
@@ -26,6 +26,15 @@ def handle_user_input(bookcase):
         case 3:
             pass
         case 4:
-            pass
+            display_messages([f"{RED}Updating a book.{RESET}",f"{RED}Enter the details you wish to update (if no update, just press enter):{RESET}"])
+            book_title = input(f"{RED}Please enter the title for the book you wish to update: {RESET}")
+            book_updates = {}
+            parameters = ["title", "author", "rating", "comments", "finished", "total pages", "total chapters", "current page", "current chapter", "status"]
+            for i in parameters:
+                temp = input(f"{RED}Enter the new value for the{RESET} {GREEN}{i}{RESET}: ")
+                book_updates[i] = temp if len(temp) > 0 else None
+            
+            update_a_book(bookcase, book_updates, book_title)
+            return False
         case 5:
             return False

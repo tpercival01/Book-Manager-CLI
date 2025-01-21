@@ -62,23 +62,24 @@ def main_menu():
 
 
 def display_messages(*messages):
+    indent = "    "
     for block in messages:
         if not isinstance(block, list):
             block = [str(block)]
 
         seperator = "=" * 70
 
-        print(f"\n{seperator}\n")
+        print(f"\n{indent}{seperator}\n")
         
         for msg in block:
             if "ID" in msg:
-                print(f"{RED}->{RESET} {msg}")
+                print(f"{indent}{RED}->{RESET} {msg}")
             else:
                 sentence_length = len(msg)
                 remaining_space = 70 - sentence_length
                 left_pad = remaining_space // 2
                 right_pad = remaining_space - left_pad
                 centered_line = " " * left_pad + msg + " " * right_pad
-                print(centered_line)
+                print(f"{indent}{centered_line}")
         
-        print(f"\n{seperator}\n")
+        print(f"\n{indent}{seperator}\n")

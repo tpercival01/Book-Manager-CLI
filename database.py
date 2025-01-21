@@ -28,7 +28,7 @@ def load_file():
         bookcase = Bookcase()
         bookcase.bulk_add_books(json_temp)
 
-        display_messages(["File loaded successfully.", "View all books to check your save file.\n"])
+        display_messages("File loaded successfully.")
         return bookcase
     except json.JSONDecodeError:
         print("Error: Could not decode json.")
