@@ -1,16 +1,35 @@
 import json
 import os
+from book import Bookcase, Book
+from graphics import display_messages
 
 def load_file():
     if not os.path.isfile("save_file.json"):
         print("\nNo save file found, continuing as new user.\n")
-        return {}
-    
+        return Bookcase()
     try: 
         with open("save_file.json", "r") as infile:
             json_object = json.load(infile)
-            print("\nFile loaded successfully.\n")
-        return json_object
+
+        json_temp = {}
+        for id in json_object:
+            temp_book = Book(json_object[id]["title"],
+                         json_object[id]["author"],
+                         json_object[id]["rating"],
+                         json_object[id]["comments"],
+                         json_object[id]["finished"],
+                         json_object[id]["total_pages"],
+                         json_object[id]["total_chapters"],
+                         json_object[id]["progress"],
+                         json_object[id]["status"] 
+                         )
+            json_temp[id] = temp_book
+
+        bookcase = Bookcase()
+        bookcase.bulk_add_books(json_temp)
+
+        display_messages(["File loaded successfully.", "View all books to check your save file.\n"])
+        return bookcase
     except json.JSONDecodeError:
         print("Error: Could not decode json.")
         return {}
@@ -22,17 +41,23 @@ def save_file(json_object):
     try:
         with open("save_file.json", "w") as outfile:
             json.dump(json_object, outfile)
-            print("\n File has been saved.")
     except Exception as e:
-        print("Error occured: {e}")
+        print(f"Error occured: {e}")
 
 def create_save_data(bookcase):
-    json_data = []
-    try:
-        for id in bookcase.books:
-            temp = bookcase.books[id].get_book()
-            json_data.append(temp)
-    except:
-        return json.dumps(json_data, indent=4)
-    
-    return json.dumps(json_data, indent=4)
+    json_data = {}
+    for id in bookcase.books:
+        temp = {
+                "title": bookcase.books[id].title,
+                "author": bookcase.books[id].author,
+                "progress": bookcase.books[id].progress,
+                "status": bookcase.books[id].status,
+                "total_chapters": bookcase.books[id].total_chapters,
+                "total_pages": bookcase.books[id].total_pages,
+                "rating": bookcase.books[id].rating,
+                "comments": bookcase.books[id].comments,
+                "finished": bookcase.books[id].finished
+        }
+        json_data[id] = temp
+
+    return json_data

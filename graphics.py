@@ -1,32 +1,57 @@
+RED = "\033[91m"
+GREEN = "\033[92m"
+RESET = "\033[0m"
+width = 70
+top_bottom = f"{GREEN}{'=' * width}{RESET}"
+empty_line = f"{GREEN}={RESET}" + " " * (width-2) + f"{GREEN}={RESET}"
+
 def title_card():
-    RED = "\033[91m"
-    GREEN = "\033[92m"
-    RESET = "\033[0m"
+    title_text = "   WELCOME   TO   BOOK   MANAGER   "
+    remaining_space = width - 2 - len(title_text)
+    left_padding = remaining_space // 2
+    right_padding = remaining_space - left_padding
+
+    title_line = (
+        f"{GREEN}={RESET}" +
+        " " * left_padding +
+        f"{RED}{title_text}{RESET}" +
+        " " * right_padding +
+        f"{GREEN}={RESET}"
+    )
 
     banner = f"""
-{GREEN}############################################################{RESET}
-{GREEN}#                                                          #{RESET}
-{GREEN}#      {RESET}{RED} W E L C O M E   T O   B O O K   M A N A G E R {RESET}{GREEN}     #{RESET}
-{GREEN}#                                                          #{RESET}
-{GREEN}############################################################{RESET}
+    {top_bottom}
+    {empty_line}
+    {title_line}
+    {empty_line}
+    {top_bottom}
     """
-    print(banner.strip())
+
+    print(banner)
 
 def main_menu():
-    RED = "\033[91m"
-    GREEN = "\033[92m"
-    RESET = "\033[0m"
+    title_text = " M A I N   M E N U "
+    remaining_space = width - 2 - len(title_text)
+    left_padding = remaining_space // 2
+    right_padding = remaining_space - left_padding
+
+    title_line = (
+        f"{GREEN}={RESET}" +
+        " " * left_padding +
+        f"{RED}{title_text}{RESET}" +
+        " " * right_padding +
+        f"{GREEN}={RESET}"
+    )
 
     banner = f"""
-{GREEN}############################################################{RESET}
-{GREEN}#                                                          #{RESET}
-{GREEN}#                    {RESET}{RED} M A I N   M E N U {RESET}{GREEN}                   #{RESET}
-{GREEN}#                                                          #{RESET}
-{GREEN}############################################################{RESET}
+    {top_bottom}
+    {empty_line}
+    {title_line}
+    {empty_line}
+    {top_bottom}
     """
-    
-    # Print the banner
-    print(banner.strip())
+
+    print(banner)
     
     # Print your menu options
     print(f"\n{RED}1){RESET} View all books")
@@ -34,3 +59,26 @@ def main_menu():
     print(f"{RED}3){RESET} Remove a book")
     print(f"{RED}4){RESET} Update book information")
     print(f"{RED}5){RESET} Exit")
+
+
+def display_messages(*messages):
+    for block in messages:
+        if not isinstance(block, list):
+            block = [str(block)]
+
+        seperator = "=" * 70
+
+        print(f"\n{seperator}\n")
+        
+        for msg in block:
+            if "ID" in msg:
+                print(f"{RED}->{RESET} {msg}")
+            else:
+                sentence_length = len(msg)
+                remaining_space = 70 - sentence_length
+                left_pad = remaining_space // 2
+                right_pad = remaining_space - left_pad
+                centered_line = " " * left_pad + msg + " " * right_pad
+                print(centered_line)
+        
+        print(f"\n{seperator}\n")
