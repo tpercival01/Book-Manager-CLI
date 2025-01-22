@@ -101,3 +101,7 @@ def update_a_book(bookcase, book_updates, book_title):
     bookcase.add_new_to_bookcase(book)
 
     return bookcase
+
+def remove_book(bookcase, book_title):
+    book = bookcase.get_book(book_title)
+    return bookcase

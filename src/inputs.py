@@ -1,4 +1,4 @@
-from book import search_book, update_a_book
+from book import search_book, update_a_book, remove_book
 from graphics import display_messages
 
 RED = "\033[91m"
@@ -17,17 +17,21 @@ def handle_user_input(bookcase):
             title = input(f"{RED}Enter the title of the book{RESET}: ")
             author = input(f"\n{RED}Enter the author of the book{RESET}: ")
             
-            temp = f"{RED}Added book{RESET}: {title} by {author} to your library!"
+            temp = f"{RED}Added book{RESET}: {title} by {author} has been added to your library!"
             display_messages(temp)
 
             book = search_book(title, author)
             bookcase.add_new_to_bookcase(book)
             return True
         case 3:
-            pass
+            display_messages(f"{RED}Removing a book from your library.{RESET}")
+            book_title = input(f"{RED}Please enter the title for the book you wish to remove: {RESET}{GREEN}")
+            remove_book(bookcase, book_title)
+            display_messages(f"{RED}{book_title} has now been deleted from your library.{RESET}")
+            return True
         case 4:
             display_messages([f"{RED}Updating a book.{RESET}",f"{RED}Enter the details you wish to update (if no update, just press enter):{RESET}"])
-            book_title = input(f"{RED}Please enter the title for the book you wish to update: {RESET}")
+            book_title = input(f"{RED}Please enter the title for the book you wish to update: {RESET}{GREEN}")
             book_updates = {}
             parameters = ["title", "author", "rating", "comments", "finished", "total pages", "total chapters", "current page", "current chapter", "status"]
             for i in parameters:
