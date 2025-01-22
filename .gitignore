@@ -2,3 +2,4 @@ __pycache__
 ./backups
 save_file.json
 .DS_Store
+personal_file.json

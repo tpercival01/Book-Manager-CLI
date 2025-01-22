@@ -6,7 +6,7 @@ from graphics import display_messages
 
 def load_file():
     if not os.path.isfile("save_file.json"):
-        print("\nNo save file found, continuing as new user.\n")
+        display_messages("No save file found, continuing as new user.")
         return Bookcase()
     try: 
         with open("save_file.json", "r") as infile:
@@ -38,29 +38,41 @@ def load_file():
         print(f"Unexpected error: {e}")
         return {}
     
-def save_file(json_object):
-    try:
-        with open("save_file.json", "w") as outfile:
-            json.dump(json_object, outfile)
-    except Exception as e:
-        print(f"Error occured: {e}")
+def save_file(json_object, data_type):
+    if data_type == "bookcase":
+        try:
+            with open("save_file.json", "w") as outfile:
+                json.dump(json_object, outfile)
+        except Exception as e:
+            print(f"Error occured: {e}")
+    else:
+        try:
+            with open("personal_file.json", "w") as outfile:
+                json.dump(json_object, outfile)
+        except Exception as e:
+            print(f"Error occured: {e}")
 
-def create_save_data(bookcase):
+def create_save_data(data, data_type):
     json_data = {}
-    for id in bookcase.books:
-        temp = {
-                "title": bookcase.books[id].title,
-                "author": bookcase.books[id].author,
-                "progress": bookcase.books[id].progress,
-                "status": bookcase.books[id].status,
-                "total_chapters": bookcase.books[id].total_chapters,
-                "total_pages": bookcase.books[id].total_pages,
-                "rating": bookcase.books[id].rating,
-                "comments": bookcase.books[id].comments,
-                "finished": bookcase.books[id].finished
-        }
-        json_data[id] = temp
-
+    if data_type == "bookcase":
+        for id in data.books:
+            temp = {
+                    "title": data.books[id].title,
+                    "author": data.books[id].author,
+                    "progress": data.books[id].progress,
+                    "status": data.books[id].status,
+                    "total_chapters": data.books[id].total_chapters,
+                    "total_pages": data.books[id].total_pages,
+                    "rating": data.books[id].rating,
+                    "comments": data.books[id].comments,
+                    "finished": data.books[id].finished
+            }
+            json_data[id] = temp
+    else:
+        name = data[0]
+        authors = data[1].split(",")
+        json_data["name"] = name
+        json_data["authors"] = authors
     return json_data
 
 def create_backup():
