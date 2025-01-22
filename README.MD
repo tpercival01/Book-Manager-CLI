@@ -22,7 +22,7 @@ Book Manager CLI is a Python-based command-line application designed to help use
 
 Clone the repository:
 
-- git clone https://github.com/your-username/book-manager-cli.git
+- git clone https://github.com/tpercival01/book-manager-cli.git
 - cd book-manager-cli
 
 Ensure you have Python 3.7 or later installed. You can check your version with:
