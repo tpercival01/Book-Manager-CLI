@@ -42,16 +42,6 @@ Ensure you have Python 3.7 or later installed. You can check your version with:
 
 Your library will be automatically saved after each session in a JSON file, and a backup will be created in a separate folder.
 
-## Project Structure
-
-book-manager-cli/
-├── backups/               # Backup folder for JSON library files
-├── library.json           # Main JSON file storing the library
-├── main.py                # Entry point of the application
-├── utils/                 # Utility modules for handling data and backup
-├── requirements.txt       # List of dependencies (if any)
-└── README.md              # Project documentation
-
 ## Contribution
 
 Contributions are welcome! If you'd like to contribute:
