@@ -22,7 +22,7 @@ Book Manager CLI is a Python-based command-line application designed to help use
 
 Clone the repository:
 
-- git clone https://github.com/your-username/book-manager-cli.git
+- git clone https://github.com/tpercival01/book-manager-cli.git
 - cd book-manager-cli
 
 Ensure you have Python 3.7 or later installed. You can check your version with:
@@ -41,16 +41,6 @@ Ensure you have Python 3.7 or later installed. You can check your version with:
     - Exit the application
 
 Your library will be automatically saved after each session in a JSON file, and a backup will be created in a separate folder.
-
-## Project Structure
-
-book-manager-cli/
-├── backups/               # Backup folder for JSON library files
-├── library.json           # Main JSON file storing the library
-├── main.py                # Entry point of the application
-├── utils/                 # Utility modules for handling data and backup
-├── requirements.txt       # List of dependencies (if any)
-└── README.md              # Project documentation
 
 ## Contribution
 
