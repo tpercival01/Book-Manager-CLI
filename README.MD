@@ -22,34 +22,23 @@ Book Manager CLI is a Python-based command-line application designed to help use
 
 Clone the repository:
 
-git clone https://github.com/your-username/book-manager-cli.git
-cd book-manager-cli
+- git clone https://github.com/your-username/book-manager-cli.git
+- cd book-manager-cli
 
 Ensure you have Python 3.7 or later installed. You can check your version with:
-
-python --version
-
-Install dependencies (if any) by running:
-
-pip install -r requirements.txt
+    python --version
 
 ## Usage
 
-Run the main script:
+- Run the main script: 
+    python main.py
 
-python main.py
-
-Follow the on-screen menu prompts to interact with your library:
-
-Add a new book
-
-Update progress
-
-View books
-
-Rate completed books
-
-Exit the application
+- Follow the on-screen menu prompts to interact with your library:
+    - Add a new book
+    - Update progress
+    - View books
+    - Rate completed books
+    - Exit the application
 
 Your library will be automatically saved after each session in a JSON file, and a backup will be created in a separate folder.
 
@@ -67,15 +56,14 @@ book-manager-cli/
 
 Contributions are welcome! If you'd like to contribute:
 
-Fork the repository.
+- Fork the repository.
 
-Create a feature branch:
+- Create a feature branch:
+    - git checkout -b feature-name
 
-git checkout -b feature-name
+- Commit your changes and push to your forked repository.
 
-Commit your changes and push to your forked repository.
-
-Open a pull request for review.
+- Open a pull request for review.
 
 ## License
 
