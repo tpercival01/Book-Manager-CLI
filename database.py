@@ -1,5 +1,6 @@
 import json
 import os
+import shutil
 from book import Bookcase, Book
 from graphics import display_messages
 
@@ -61,3 +62,13 @@ def create_save_data(bookcase):
         json_data[id] = temp
 
     return json_data
+
+def create_backup():
+    try:
+        os.mkdir("backups")
+    except FileExistsError:
+        pass
+
+    if os.path.isfile("save_file.json"):
+        destination = os.path.join("backups", "save_file.json")
+        shutil.copy2("save_file.json", destination)

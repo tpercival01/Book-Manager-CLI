@@ -1,6 +1,6 @@
 from graphics import title_card, main_menu, display_messages
 from inputs import handle_user_input
-from database import load_file, save_file, create_save_data
+from database import load_file, save_file, create_save_data, create_backup
 
 def main():
     title_card()
@@ -23,6 +23,7 @@ def main():
         
         json_file = create_save_data(bookcase)
         save_file(json_file)
+        create_backup()
 
 if __name__ == "__main__":
     main()
